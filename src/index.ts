@@ -1,6 +1,7 @@
 import koa from 'koa';
 import Router from '@koa/router';
 import { configDotenv } from 'dotenv';
+import { renderer } from './client/renderer';
 
 configDotenv();
 
@@ -11,7 +12,7 @@ const app = new koa();
 const router = new Router();
 
 router.get('/', (ctx) => {
-  ctx.response.body = 'hi there!!!!!!';
+  ctx.response.body = renderer();
 });
 
 app.use(router.routes()).use(router.allowedMethods());
