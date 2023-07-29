@@ -6,7 +6,7 @@
   "scripts": {
     "dev:watch": "webpack --config webpack.dev.js --watch",
     "dev:serve": "node --watch dist/bundle.js",
-    "dev": "npm-run-all --parallel dev:*"
+    "dev": "NODE_ENV=development npm-run-all --parallel dev:*"
   },
   "keywords": [],
   "author": "orobos654@gmail.com",

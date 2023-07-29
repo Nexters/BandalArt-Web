@@ -1,6 +1,11 @@
 const path = require('path');
+const { configDotenv } = require('dotenv');
+configDotenv();
+
+const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
+  mode: isDev ? 'development' : 'production',
   target: 'node',
   entry: './src/index.ts',
   module: {
