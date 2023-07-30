@@ -21,4 +21,8 @@ viewRouter.get('/share/:key', async (ctx) => {
   });
 });
 
+viewRouter.get('/health', (ctx) => {
+  ctx.response.body = 'ok';
+});
+
 export default viewRouter;
