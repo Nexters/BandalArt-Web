@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { configDotenv } = require('dotenv');
 configDotenv();
 
@@ -8,27 +9,46 @@ module.exports = {
   mode: isDev ? 'development' : 'production',
   target: 'node',
   entry: './src/index.ts',
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'public/styles.css',
+    }),
+  ],
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'babel-loader',
         exclude: /node_modules/,
-        options: {
-          presets: [
-            '@babel/preset-typescript',
-            '@babel/preset-env',
-            '@babel/preset-react',
-          ],
-        },
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: '@linaria/webpack-loader',
+            options: {
+              sourceMap: isDev,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: isDev,
+            },
+          },
+        ],
       },
     ],
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
-    fallback: {
-      path: false,
-    },
   },
   output: {
     filename: 'bundle.js',

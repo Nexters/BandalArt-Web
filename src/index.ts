@@ -1,5 +1,6 @@
 import koa from 'koa';
 import Router from '@koa/router';
+import serve from 'koa-static';
 import { configDotenv } from 'dotenv';
 import { renderer } from './client/renderer';
 
@@ -15,6 +16,7 @@ router.get('/', (ctx) => {
   ctx.response.body = renderer();
 });
 
+app.use(serve(__dirname + '/public'));
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(PORT, () => {
