@@ -16,7 +16,7 @@ viewRouter.get('/share/:key', async (ctx) => {
     stylesheetUrl: process.env.STYLESHEET_URL ?? '',
     store: createStore({
       bandalartDetail: bandalartDetail,
-      bandalartCells: bandalartCells.children,
+      bandalartTree: bandalartCells,
     }),
   });
 });

@@ -3,26 +3,25 @@ import { css } from '@linaria/core';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../stores/createStore';
 import { HeaderSection } from './components/HeaderSection';
+import { Table } from './components/Table';
+import { TABLE_SIZE } from '../constants/table';
 
 export const BandalartSharePage = () => {
   const detail = useSelector((state: RootState) => state.bandalartDetail);
-  const cells = useSelector((state: RootState) => state.bandalartCells);
+  const treeRoot = useSelector((state: RootState) => state.bandalartTree)!;
 
-  const completionRatio = cells[0].completionRatio;
+  const completionRatio = treeRoot.completionRatio;
 
   return (
     <div className={container}>
       <HeaderSection detail={detail} completionRatio={completionRatio} />
-
-      {cells.map((cell) => (
-        <p key={cell.key}>{cell.title}</p>
-      ))}
+      <Table root={treeRoot} />
     </div>
   );
 };
 
 const container = css`
-  width: 375px;
+  width: ${TABLE_SIZE}px;
   height: 100vh;
 
   display: flex;
@@ -30,4 +29,5 @@ const container = css`
   align-items: center;
   justify-content: center;
   margin: auto;
+  gap: 18px;
 `;

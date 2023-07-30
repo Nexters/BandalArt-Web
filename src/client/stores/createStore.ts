@@ -1,17 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { bandalartDetailSlice } from './bandalartDetailSlice';
-import { bandalartCellsSlice } from './bandalartCellsSlice';
+import { bandalartTreeSlice } from './bandalartTreeSlice';
 
 export type RootState = {
   bandalartDetail: ReturnType<typeof bandalartDetailSlice.reducer>;
-  bandalartCells: ReturnType<typeof bandalartCellsSlice.reducer>;
+  bandalartTree: ReturnType<typeof bandalartTreeSlice.reducer>;
 };
 
 export const createStore = (preloadedState: RootState) =>
   configureStore({
     reducer: {
       bandalartDetail: bandalartDetailSlice.reducer,
-      bandalartCells: bandalartCellsSlice.reducer,
+      bandalartTree: bandalartTreeSlice.reducer,
     },
     preloadedState: preloadedState,
   });

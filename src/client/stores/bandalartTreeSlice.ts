@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { BandalartCell } from '../../types/BandalartCell';
 
-export const bandalartCellsSlice = createSlice<
-  BandalartCell[],
+export const bandalartTreeSlice = createSlice<
+  BandalartCell | null,
   Record<string, never>,
-  'bandalartCells'
+  'bandalartTree'
 >({
-  name: 'bandalartCells',
-  initialState: [],
+  name: 'bandalartTree',
+  initialState: null,
   reducers: {},
 });

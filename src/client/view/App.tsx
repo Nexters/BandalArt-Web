@@ -19,11 +19,17 @@ export const App = ({ store }: { store: Store }) => {
 };
 
 const globalStyle = css`
+  background-color: var(--color-50);
+
   ${theme};
 
   :global(html) {
     html {
       box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
     }
 
     *,
