@@ -14,7 +14,8 @@ export const renderer = ({
   return `
     <html lang="ko">
       <head>
-        <title>SSR</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>반다라트</title>
         <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
         <link rel="stylesheet" href="${stylesheetUrl}" />
       </head>
