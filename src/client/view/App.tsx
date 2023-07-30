@@ -1,13 +1,15 @@
 import React from 'react';
-import { css } from '@linaria/core';
 import { initApiClient } from '../../agent/ApiClient';
+import { BandalartSharePage } from './share';
+import { Provider } from 'react-redux';
+import { Store } from 'redux';
 
 initApiClient();
 
-export const App = () => {
-  return <div className={style}>hi</div>;
+export const App = ({ store }: { store: Store }) => {
+  return (
+    <Provider store={store}>
+      <BandalartSharePage />
+    </Provider>
+  );
 };
-
-const style = css`
-  background-color: red;
-`;
