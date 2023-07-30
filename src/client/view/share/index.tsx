@@ -22,7 +22,8 @@ export const BandalartSharePage = () => {
 
 const container = css`
   width: ${TABLE_SIZE}px;
-  height: 100vh;
+  min-height: 100vh;
+  overflow: scroll;
 
   display: flex;
   flex-direction: column;
