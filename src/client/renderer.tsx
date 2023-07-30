@@ -15,6 +15,7 @@ export const renderer = ({
     <html lang="ko">
       <head>
         <title>SSR</title>
+        <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
         <link rel="stylesheet" href="${stylesheetUrl}" />
       </head>
       <body>
