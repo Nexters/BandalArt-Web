@@ -12,12 +12,14 @@ const HOST = process.env.HOST;
 const app = new koa();
 const router = new Router();
 
-router.get('/', (ctx) => {
-  ctx.response.body = renderer();
+router.get('/share/:key', (ctx) => {
+  ctx.response.body = renderer({
+    stylesheetUrl: process.env.STYLESHEET_URL ?? '',
+  });
 });
 
-app.use(serve(__dirname + '/public'));
 app.use(router.routes()).use(router.allowedMethods());
+app.use(serve(__dirname + '/public'));
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://${HOST}:${PORT}`);
