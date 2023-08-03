@@ -13,7 +13,15 @@ export const BandalartSharePage = () => {
   const completionRatio = treeRoot.completionRatio;
 
   return (
-    <div className={container}>
+    <div
+      className={container}
+      style={
+        {
+          ['--main-color']: detail.mainColor,
+          ['--sub-color']: detail.subColor,
+        } as CSSProperties
+      }
+    >
       <HeaderSection detail={detail} completionRatio={completionRatio} />
       <Table root={treeRoot} />
     </div>

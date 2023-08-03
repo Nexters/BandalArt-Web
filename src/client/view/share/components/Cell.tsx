@@ -56,14 +56,14 @@ const baseCellBox = css`
 `;
 
 const subCellBox = css`
-  background-color: var(--color-theme-sub);
-  color: var(--color-theme1);
+  background-color: var(--sub-color);
+  color: var(--main-color);
   font-weight: 700;
 `;
 
 const mainCellBox = css`
-  background-color: var(--color-theme1);
-  color: var(--color-theme-sub);
+  background-color: var(--main-color);
+  color: var(--sub-color);
   font-weight: 700;
 
   position: absolute;

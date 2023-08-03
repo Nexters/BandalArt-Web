@@ -18,7 +18,7 @@ export const HeaderSection = ({
 
   return (
     <section className={container}>
-      <div className={emojiBox}>😎</div>
+      <div className={emojiBox}>{detail.profileEmoji}</div>
       <h1 className={title}>{detail.title}</h1>
       <div className={progressInfoContainer}>
         <span className={subtext}>달성률 ({completionRatio}%)</span>
@@ -101,7 +101,7 @@ const progressContainer = css`
     width: calc(var(--progress-ratio) * 1%);
     height: 100%;
     border-radius: 5px;
-    background: var(--color-theme1);
+    background: var(--main-color);
   }
 
   progress {
