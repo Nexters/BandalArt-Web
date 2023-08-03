@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { css } from '@linaria/core';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../stores/createStore';
@@ -30,8 +30,8 @@ export const BandalartSharePage = () => {
 
 const container = css`
   width: ${TABLE_SIZE}px;
-  min-height: 100vh;
-  overflow: scroll;
+  min-height: 100dvh;
+  overflow: auto;
 
   display: flex;
   flex-direction: column;

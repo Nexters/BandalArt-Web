@@ -31,6 +31,8 @@ export const Cell = ({ type, title, isCompleted }: CellProps) => {
 };
 
 const baseCellBox = css`
+  user-select: none;
+
   position: relative;
   overflow: hidden;
 
