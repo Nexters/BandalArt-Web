@@ -18,7 +18,9 @@ export const HeaderSection = ({
 
   return (
     <section className={container}>
-      <div className={emojiBox}>{detail.profileEmoji}</div>
+      {detail.profileEmoji && (
+        <div className={emojiBox}>{detail.profileEmoji}</div>
+      )}
       <h1 className={title}>{detail.title}</h1>
       <div className={progressInfoContainer}>
         <span className={subtext}>달성률 ({completionRatio}%)</span>
