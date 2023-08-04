@@ -41,7 +41,6 @@ const baseCellBox = css`
   background-color: #fff;
   border-radius: 10px;
 
-  font-family: Pretendard, sans-serif;
   font-size: 12px;
   font-weight: 500;
 

@@ -60,7 +60,6 @@ const emojiBox = css`
 const title = css`
   color: var(--color-900);
   text-align: center;
-  font-family: Pretendard, serif;
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 26px;
@@ -68,7 +67,6 @@ const title = css`
 
 const subtext = css`
   color: var(--color-600);
-  font-family: Pretendard, serif;
   font-size: 12px;
   font-weight: 500;
 `;
