@@ -9,17 +9,21 @@ type CellProps = {
   type: CellType;
   title: string | null;
   isCompleted: boolean;
+  position?: CellPosition;
 };
 
-export const Cell = ({ type, title, isCompleted }: CellProps) => {
+export type CellPosition = 'lt' | 'rt' | 'lb' | 'rb' | 'center';
+
+export const Cell = ({ type, title, isCompleted, position }: CellProps) => {
   const className = cx(
     baseCellBox,
     type === 'sub' && subCellBox,
     type === 'main' && mainCellBox,
     type === 'task' && isCompleted && 'completed',
+    type !== 'task' && position && positionToStyle[position],
   );
   return (
-    <div className={className}>
+    <div role={'checkbox'} className={className} aria-checked={isCompleted}>
       {title}
       {isCompleted && (
         <div className={completedDim}>
@@ -57,9 +61,11 @@ const baseCellBox = css`
 `;
 
 const subCellBox = css`
+  position: absolute;
   background-color: var(--sub-color);
   color: var(--main-color);
   font-weight: 700;
+  z-index: 1;
 `;
 
 const mainCellBox = css`
@@ -68,9 +74,29 @@ const mainCellBox = css`
   font-weight: 700;
 
   position: absolute;
+`;
+
+const center = css`
   top: calc((${TABLE_SIZE} - ${CELL_SIZE}) / 2 * 1px);
   left: calc((${TABLE_SIZE} - ${CELL_SIZE}) / 2 * 1px);
 `;
+const lt = css`
+  top: calc((${TABLE_SIZE} / 2 - ${CELL_SIZE} * 0.5) / 2 * 1px);
+  left: calc((${TABLE_SIZE} / 2 - ${CELL_SIZE} * 0.5) / 2 * 1px);
+`;
+const rt = css`
+  top: calc((${TABLE_SIZE} / 2 - ${CELL_SIZE} * 0.5) / 2 * 1px);
+  right: calc((${TABLE_SIZE} / 2 - ${CELL_SIZE} * 0.5) / 2 * 1px);
+`;
+const lb = css`
+  bottom: calc((${TABLE_SIZE} / 2 - ${CELL_SIZE} * 0.5) / 2 * 1px);
+  left: calc((${TABLE_SIZE} / 2 - ${CELL_SIZE} * 0.5) / 2 * 1px);
+`;
+const rb = css`
+  bottom: calc((${TABLE_SIZE} / 2 - ${CELL_SIZE} * 0.5) / 2 * 1px);
+  right: calc((${TABLE_SIZE} / 2 - ${CELL_SIZE} * 0.5) / 2 * 1px);
+`;
+const positionToStyle = { center, lt, rt, lb, rb } as const;
 
 const completedDim = css`
   position: absolute;

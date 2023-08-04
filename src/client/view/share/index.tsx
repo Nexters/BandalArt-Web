@@ -23,7 +23,9 @@ export const BandalartSharePage = () => {
       }
     >
       <HeaderSection detail={detail} completionRatio={completionRatio} />
-      <Table root={treeRoot} />
+      <main>
+        <Table root={treeRoot} />
+      </main>
     </div>
   );
 };

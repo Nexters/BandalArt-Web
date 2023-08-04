@@ -23,7 +23,9 @@ export const HeaderSection = ({
       )}
       <h1 className={title}>{detail.title}</h1>
       <div className={progressInfoContainer}>
-        <span className={subtext}>달성률 ({completionRatio}%)</span>
+        <span id={'progressLabel'} className={subtext}>
+          달성률 ({completionRatio}%)
+        </span>
         {detail.dueDate && (
           <span className={cx(subtext, dueDate)}>~{formattedDueDate}</span>
         )}
@@ -32,7 +34,13 @@ export const HeaderSection = ({
         className={progressContainer}
         style={{ '--progress-ratio': completionRatio } as CSSProperties}
       >
-        <progress value={completionRatio} aria-label="반다라트 달성률" />
+        <progress
+          value={completionRatio}
+          max={100}
+          aria-labelledby="progressLabel"
+          aria-valuenow={completionRatio}
+          aria-valuemax={100}
+        />
       </div>
     </section>
   );

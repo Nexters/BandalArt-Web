@@ -64,5 +64,14 @@ const globalStyle = css`
     p {
       margin: 0;
     }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-block: 0;
+      margin-inline: 0;
+      padding-inline-start: 0;
+    }
   }
 `;

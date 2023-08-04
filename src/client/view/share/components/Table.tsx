@@ -1,7 +1,7 @@
 import { BandalartCell } from '../../../../types/BandalartCell';
 import React from 'react';
 import { css, cx } from '@linaria/core';
-import { Cell } from './Cell';
+import { Cell, CellPosition } from './Cell';
 import {
   GAP_BETWEEN_CELLS,
   PADDING_IN_SECTION,
@@ -13,38 +13,48 @@ type TableProps = {
 };
 
 const subTaskPosition = [4, 2, 3, 1];
-const subSectionPosition = ['lt', 'rt', 'lb', 'rb'];
+const subSectionPosition = ['lt', 'rt', 'lb', 'rb'] as CellPosition[];
 
 export const Table = ({ root }: TableProps) => {
   return (
-    <div className={container}>
-      <Cell type={'main'} title={root.title} isCompleted={root.isCompleted} />
-      {root.children.map((subCell, subIdx) => (
-        <div
-          key={subSectionPosition[subIdx]}
-          className={cx(subSection, subSectionPosition[subIdx])}
-        >
-          {subCell.children.map((task, taskIdx) => (
-            <>
-              {taskIdx === subTaskPosition[subIdx] && (
-                <Cell
-                  key={subCell.key}
-                  type={'sub'}
-                  title={subCell.title}
-                  isCompleted={subCell.isCompleted}
-                />
-              )}
+    <ul className={container}>
+      <li>
+        <Cell
+          type={'main'}
+          title={root.title}
+          isCompleted={root.isCompleted}
+          position={'center'}
+        />
+        {root.children.map((subCell, subIdx) => (
+          <ul key={subSectionPosition[subIdx]}>
+            <li key={subCell.key}>
               <Cell
-                key={task.key}
-                type={'task'}
-                title={task.title}
-                isCompleted={task.isCompleted}
+                type={'sub'}
+                title={subCell.title}
+                isCompleted={subCell.isCompleted}
+                position={subSectionPosition[subIdx]}
               />
-            </>
-          ))}
-        </div>
-      ))}
-    </div>
+              <ul className={cx(subSection, subSectionPosition[subIdx])}>
+                {subCell.children.map((task, taskIdx) => (
+                  <>
+                    {taskIdx === subTaskPosition[subIdx] && (
+                      <li aria-hidden="true" />
+                    )}
+                    <li key={task.key}>
+                      <Cell
+                        type={'task'}
+                        title={task.title}
+                        isCompleted={task.isCompleted}
+                      />
+                    </li>
+                  </>
+                ))}
+              </ul>
+            </li>
+          </ul>
+        ))}
+      </li>
+    </ul>
   );
 };
 
