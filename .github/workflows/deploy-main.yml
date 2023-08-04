@@ -1,0 +1,46 @@
+name: Deploy to cloudtype
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Connect deploy key
+        uses: cloudtype-github-actions/connect@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          ghtoken: ${{ secrets.GHP_TOKEN }}
+      - name: Deploy
+        uses: cloudtype-github-actions/deploy@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          project: orobos654/proj
+          stage: main
+          yaml: |
+            name: bandalart-web
+            app: node@18
+            options:
+              env:
+                - name: NODE_ENV
+                  value: production
+                - name: HOST
+                  value: ${{ secrets.HOST }}
+                - name: PORT
+                  value: ${{ secrets.PORT }}
+                - name: API_BASE_URL
+                  value: ${{ secrets.API_BASE_URL }}
+                - name: STYLESHEET_URL
+                  value: ${{ secrets.STYLESHEET_URL }}
+              ports: ${{ secrets.PORT }}
+              install: npm ci
+              build: npx webpack --config webpack.common.js
+              start: node dist/bundle.js
+              healthz: /health
+            context:
+              git:
+                url: git@github.com:${{ github.repository }}.git
+                ref: ${{ github.ref }}
