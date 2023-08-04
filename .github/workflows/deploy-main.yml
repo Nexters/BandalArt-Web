@@ -37,7 +37,7 @@ jobs:
                   value: ${{ secrets.STYLESHEET_URL }}
               ports: ${{ secrets.PORT }}
               install: npm ci
-              build: npx webpack --config webpack.common.js
+              build: npx webpack --config webpack.config.js
               start: node dist/bundle.js
               healthz: /health
             context:
