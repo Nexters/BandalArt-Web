@@ -13,11 +13,13 @@ export const renderer = ({
   try {
     const content = renderToString(<App store={store} />);
     return `
+    <!DOCTYPE html>
     <html lang="ko">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta name="description" content="작은 행동이 모여서 큰 목표를 이룹니다">
         <title>반다라트</title>
-        <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+        <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-dynamic-subset.css" />
         <link rel="stylesheet" href="${stylesheetUrl}" />
       </head>
       <body>

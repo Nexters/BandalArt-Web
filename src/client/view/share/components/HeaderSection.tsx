@@ -30,7 +30,7 @@ export const HeaderSection = ({
         className={progressContainer}
         style={{ '--progress-ratio': completionRatio } as CSSProperties}
       >
-        <progress value={completionRatio} aria-readonly />
+        <progress value={completionRatio} aria-label="반다라트 달성률" />
       </div>
     </section>
   );
