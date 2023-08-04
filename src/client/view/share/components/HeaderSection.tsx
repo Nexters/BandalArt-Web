@@ -93,6 +93,15 @@ const progressContainer = css`
   border-radius: 5px;
   background-color: var(--color-100);
 
+  @keyframes progress {
+    from {
+      width: 0;
+    }
+    to {
+      width: calc(var(--progress-ratio) * 1%);
+    }
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -102,6 +111,7 @@ const progressContainer = css`
     height: 100%;
     border-radius: 5px;
     background: var(--main-color);
+    animation: progress 0.8s ease-in-out;
   }
 
   progress {
