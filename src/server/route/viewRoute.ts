@@ -14,7 +14,7 @@ viewRouter.get('/share/:key', async (ctx) => {
     const bandalartDetail = await getBandalartDetailByKey(key);
     const bandalartCells = await getBandalartCells(key);
     ctx.response.body = renderer({
-      stylesheetUrl: process.env.STYLESHEET_URL ?? '',
+      assetPath: process.env.ASSET_PATH ?? '',
       store: createStore({
         bandalartDetail: bandalartDetail,
         bandalartTree: bandalartCells,

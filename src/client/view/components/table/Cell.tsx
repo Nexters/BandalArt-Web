@@ -1,7 +1,7 @@
 import { css, cx } from '@linaria/core';
 import React from 'react';
-import { Check } from '../../icons/Check';
 import { CELL_SIZE, TABLE_SIZE } from '../../constants/table';
+import { Icon } from '../_common/Icon';
 
 type CellType = 'main' | 'sub' | 'task';
 
@@ -26,9 +26,7 @@ export const Cell = ({ type, title, isCompleted, position }: CellProps) => {
     <div role={'checkbox'} className={className} aria-checked={isCompleted}>
       {title}
       {isCompleted && (
-        <div className={completedDim}>
-          <Check />
-        </div>
+        <Icon className={icon} iconName={'check'} alt={'달성 완료 체크 표시'} />
       )}
     </div>
   );
@@ -98,16 +96,8 @@ const rb = css`
 `;
 const positionToStyle = { center, lt, rt, lb, rb } as const;
 
-const completedDim = css`
+const icon = css`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  svg {
-    position: absolute;
-    bottom: 4px;
-    right: 4px;
-  }
+  bottom: 4px;
+  right: 4px;
 `;

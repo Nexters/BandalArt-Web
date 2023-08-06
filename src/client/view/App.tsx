@@ -1,18 +1,26 @@
 import React from 'react';
 import { initApiClient } from '../../agent/ApiClient';
-import { BandalartSharePage } from './share';
+import { BandalartSharePage } from './pages/share';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { css, cx } from '@linaria/core';
 import { theme } from './theme';
+import { EnvContextProvider } from './components/context/EnvContext';
 
 initApiClient();
 
-export const App = ({ store }: { store: Store }) => {
+type AppProps = {
+  store: Store;
+  assetPath: string;
+};
+
+export const App = ({ store, assetPath }: AppProps) => {
   return (
     <Provider store={store}>
       <div className={cx(globalStyle, 'theme-light')}>
-        <BandalartSharePage />
+        <EnvContextProvider assetPath={assetPath}>
+          <BandalartSharePage />
+        </EnvContextProvider>
       </div>
     </Provider>
   );

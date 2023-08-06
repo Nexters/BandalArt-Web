@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { css, cx } from '@linaria/core';
-import { BandalartDetail } from '../../../../types/BandalartDetail';
+import { BandalartDetail } from '../../../types/BandalartDetail';
 import dayjs from 'dayjs';
 
 type HeaderSectionProps = {

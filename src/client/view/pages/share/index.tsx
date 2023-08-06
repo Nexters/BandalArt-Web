@@ -1,10 +1,10 @@
 import React, { CSSProperties } from 'react';
 import { css } from '@linaria/core';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../stores/createStore';
-import { HeaderSection } from './components/HeaderSection';
-import { Table } from './components/Table';
-import { TABLE_SIZE } from '../constants/table';
+import { RootState } from '../../../stores/createStore';
+import { HeaderSection } from '../../components/HeaderSection';
+import { Table } from '../../components/table/Table';
+import { TABLE_SIZE } from '../../constants/table';
 
 export const BandalartSharePage = () => {
   const detail = useSelector((state: RootState) => state.bandalartDetail);
