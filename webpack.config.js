@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { configDotenv } = require('dotenv');
+const CopyPlugin = require('copy-webpack-plugin');
 configDotenv();
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -12,6 +13,9 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'public/styles.css',
+    }),
+    new CopyPlugin({
+      patterns: [{ from: 'src/assets', to: 'public' }],
     }),
   ],
   module: {
@@ -25,9 +29,6 @@ module.exports = {
           },
           {
             loader: '@linaria/webpack-loader',
-            options: {
-              sourceMap: isDev,
-            },
           },
         ],
       },
