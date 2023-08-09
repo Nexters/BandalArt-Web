@@ -12,6 +12,5 @@ export const BandalartDetailSchema = z.object({
     .string({ description: '달성 목표일' })
     .datetime({ offset: true })
     .nullable(),
-  shareKey: z.string({ description: '공유 키' }).nullable(),
 });
 export type BandalartDetail = z.infer<typeof BandalartDetailSchema>;
