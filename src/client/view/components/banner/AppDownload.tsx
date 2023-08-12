@@ -3,7 +3,7 @@ import { css } from '@linaria/core';
 import { EnvContext } from '../context/EnvContext';
 
 export const AppDownload = () => {
-  const { assetPath } = useContext(EnvContext);
+  const { assetPath, appDownloadUrl } = useContext(EnvContext);
   return (
     <div className={container}>
       <div className={logoContainer}>
@@ -12,7 +12,7 @@ export const AppDownload = () => {
       <span className={title}>지금 나만의 반다라트를 만들어봐요</span>
       <a
         className={downloadButton}
-        href={'https://bandalart.co'}
+        href={appDownloadUrl}
         target={'_blank'}
         rel={'noreferrer noopener'}
         title={'앱 다운로드'}
