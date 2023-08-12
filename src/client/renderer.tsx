@@ -9,6 +9,14 @@ const defaultHtml = (assetPath: string, content: string) => `
     <!DOCTYPE html>
     <html lang="ko">
       <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNDJL4812E"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-GNDJL4812E');
+        </script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <meta name="description" content="부담감은 적게, 목표는 크게">
         <meta property="og:title" content="반다라트">
@@ -23,14 +31,6 @@ const defaultHtml = (assetPath: string, content: string) => `
         <link rel="icon" type="image/png" sizes="32x32" href="${assetPath}/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="${assetPath}/favicon/favicon-16x16.png">
       </head>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNDJL4812E"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        
-        gtag('config', 'G-GNDJL4812E');
-      </script>
       <body>
         <div id="root">${content}</div>
       </body>
