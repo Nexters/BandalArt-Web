@@ -21,6 +21,14 @@ const defaultHtml = (assetPath: string, content: string) => `
         <link rel="icon" type="image/png" sizes="32x32" href="${assetPath}/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="${assetPath}/favicon/favicon-16x16.png">
       </head>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNDJL4812E"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-GNDJL4812E');
+      </script>
       <body>
         <div id="root">${content}</div>
       </body>
