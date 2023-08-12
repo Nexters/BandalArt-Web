@@ -33,8 +33,10 @@ jobs:
                   value: ${{ secrets.PORT }}
                 - name: API_BASE_URL
                   value: ${{ secrets.API_BASE_URL }}
-                - name: STYLESHEET_URL
-                  value: ${{ secrets.STYLESHEET_URL }}
+                - name: ASSET_PATH
+                  value: ${{ secrets.ASSET_PATH }}
+                - name: APP_DOWNLOAD_URL
+                  value: ${{ secrets.APP_DOWNLOAD_URL }}
               ports: ${{ secrets.PORT }}
               install: npm ci
               build: npx webpack --config webpack.config.js
