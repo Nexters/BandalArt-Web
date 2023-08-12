@@ -1,5 +1,6 @@
 import koa from 'koa';
 import serve from 'koa-static';
+import { userAgent } from 'koa-useragent';
 import { configDotenv } from 'dotenv';
 import viewRouter, { fallback } from './server/route/viewRoute';
 
@@ -10,6 +11,7 @@ const HOST = process.env.HOST;
 
 const app = new koa();
 
+app.use(userAgent);
 app.use(viewRouter.routes()).use(viewRouter.allowedMethods());
 app.use(serve(__dirname + '/public'));
 

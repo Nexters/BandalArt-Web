@@ -2,10 +2,13 @@ import React from 'react';
 import { WarningTemplate } from '../../components/template/WarningTemplate';
 import { DefaultContainer } from '../../components/_common/DefaultContainer';
 import { css } from '@linaria/core';
+import { AppProps } from '../../types/app';
+import { AppDownload } from '../../components/banner/AppDownload';
 
-export const ExpiredPage = ({ assetPath }: { assetPath: string }) => (
-  <DefaultContainer assetPath={assetPath}>
+export const ExpiredPage = (props: AppProps) => (
+  <DefaultContainer {...props}>
     <div className={container}>
+      {props.isMobile && <AppDownload />}
       <WarningTemplate
         iconName={'hourglass'}
         title={'유효기간이 만료된 페이지에요'}

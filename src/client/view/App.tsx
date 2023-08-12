@@ -4,18 +4,18 @@ import { BandalartSharePage } from './pages/share';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { DefaultContainer } from './components/_common/DefaultContainer';
+import { AppProps } from './types/app';
 
 initApiClient();
 
-type AppProps = {
+type Props = {
   store: Store;
-  assetPath: string;
-};
+} & AppProps;
 
-export const App = ({ store, assetPath }: AppProps) => {
+export const App = ({ store, ...props }: Props) => {
   return (
     <Provider store={store}>
-      <DefaultContainer assetPath={assetPath}>
+      <DefaultContainer {...props}>
         <BandalartSharePage />
       </DefaultContainer>
     </Provider>

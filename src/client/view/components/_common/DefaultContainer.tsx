@@ -6,10 +6,12 @@ import { EnvContextProvider } from '../context/EnvContext';
 type Props = {
   children: ReactNode;
   assetPath: string;
+  isMobile: boolean;
+  appDownloadUrl: string;
 };
 
-export const DefaultContainer = ({ assetPath, children }: Props) => (
+export const DefaultContainer = ({ children, ...props }: Props) => (
   <div className={cx(globalStyle, 'theme-light')}>
-    <EnvContextProvider assetPath={assetPath}>{children}</EnvContextProvider>
+    <EnvContextProvider {...props}>{children}</EnvContextProvider>
   </div>
 );
