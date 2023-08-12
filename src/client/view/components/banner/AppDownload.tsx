@@ -49,7 +49,7 @@ const logoContainer = css`
 
 const title = css`
   color: var(--color-700);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: -0.24px;
 `;
