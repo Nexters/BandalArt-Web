@@ -5,6 +5,7 @@ import { RootState } from '../../../stores/createStore';
 import { HeaderSection } from '../../components/HeaderSection';
 import { Table } from '../../components/table/Table';
 import { TABLE_SIZE } from '../../constants/table';
+import { AppDownload } from '../../components/banner/AppDownload';
 
 export const BandalartSharePage = () => {
   const detail = useSelector((state: RootState) => state.bandalartDetail);
@@ -22,6 +23,7 @@ export const BandalartSharePage = () => {
         } as CSSProperties
       }
     >
+      <AppDownload />
       <HeaderSection detail={detail} completionRatio={completionRatio} />
       <main>
         <Table root={treeRoot} />

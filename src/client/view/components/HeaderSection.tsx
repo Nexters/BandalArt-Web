@@ -47,6 +47,7 @@ export const HeaderSection = ({
 };
 
 const container = css`
+  padding-top: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
