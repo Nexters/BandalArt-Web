@@ -7,12 +7,11 @@ type Props = {
   children: ReactNode;
   assetPath: string;
   isMobile: boolean;
+  appDownloadUrl: string;
 };
 
-export const DefaultContainer = ({ assetPath, isMobile, children }: Props) => (
+export const DefaultContainer = ({ children, ...props }: Props) => (
   <div className={cx(globalStyle, 'theme-light')}>
-    <EnvContextProvider assetPath={assetPath} isMobile={isMobile}>
-      {children}
-    </EnvContextProvider>
+    <EnvContextProvider {...props}>{children}</EnvContextProvider>
   </div>
 );

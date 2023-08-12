@@ -5,10 +5,10 @@ import { css } from '@linaria/core';
 import { AppProps } from '../../types/app';
 import { AppDownload } from '../../components/banner/AppDownload';
 
-export const NotFoundPage = ({ assetPath, isMobile }: AppProps) => (
-  <DefaultContainer assetPath={assetPath} isMobile={isMobile}>
+export const NotFoundPage = (props: AppProps) => (
+  <DefaultContainer {...props}>
     <div className={container}>
-      {isMobile && <AppDownload />}
+      {props.isMobile && <AppDownload />}
       <WarningTemplate
         iconName={'warning'}
         title={'존재하지 않는 페이지에요'}

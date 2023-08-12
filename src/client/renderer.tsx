@@ -23,35 +23,32 @@ const defaultHtml = (assetPath: string, content: string) => `
       </body>
     </html>`;
 
-export const renderer = ({
-  assetPath,
-  store,
-  isMobile,
-}: {
+type AppProps = {
   assetPath: string;
-  store: Store;
   isMobile: boolean;
-}) => {
+  appDownloadUrl: string;
+};
+
+export const renderer = ({
+  store,
+  ...props
+}: {
+  store: Store;
+} & AppProps) => {
   try {
-    const content = renderToString(
-      <App store={store} assetPath={assetPath} isMobile={isMobile} />,
-    );
-    return defaultHtml(assetPath, content);
+    const content = renderToString(<App store={store} {...props} />);
+    return defaultHtml(props.assetPath, content);
   } catch (e) {
-    return renderNotFound(assetPath, isMobile);
+    return renderNotFound(props);
   }
 };
 
-export const renderNotFound = (assetPath: string, isMobile: boolean) => {
-  const content = renderToString(
-    <NotFoundPage assetPath={assetPath} isMobile={isMobile} />,
-  );
-  return defaultHtml(assetPath, content);
+export const renderNotFound = (props: AppProps) => {
+  const content = renderToString(<NotFoundPage {...props} />);
+  return defaultHtml(props.assetPath, content);
 };
 
-export const renderExpired = (assetPath: string, isMobile: boolean) => {
-  const content = renderToString(
-    <ExpiredPage assetPath={assetPath} isMobile={isMobile} />,
-  );
-  return defaultHtml(assetPath, content);
+export const renderExpired = (props: AppProps) => {
+  const content = renderToString(<ExpiredPage {...props} />);
+  return defaultHtml(props.assetPath, content);
 };

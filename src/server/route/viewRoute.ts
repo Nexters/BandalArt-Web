@@ -9,36 +9,35 @@ import { isAxiosError } from 'axios';
 
 const viewRouter = new Router();
 
+const createAppProps = ({ isMobile }: { isMobile: boolean }) => ({
+  assetPath: process.env.ASSET_PATH ?? '',
+  appDownloadUrl: process.env.APP_DOWNLOAD_URL || '',
+  isMobile,
+});
+
 viewRouter.get('/share/:key', async (ctx) => {
-  const isMobile = ctx.userAgent.isMobile;
+  const appProps = createAppProps({ isMobile: ctx.userAgent.isMobile });
   try {
     initApiClient();
     const key = ctx.params.key;
     const bandalartDetail = await getSharedBandalartDetailByKey(key);
     const bandalartCells = await getSharedBandalartCells(key);
     ctx.response.body = renderer({
-      assetPath: process.env.ASSET_PATH ?? '',
       store: createStore({
         bandalartDetail: bandalartDetail,
         bandalartTree: bandalartCells,
       }),
-      isMobile,
+      ...appProps,
     });
   } catch (e) {
     console.error(e);
     if (isAxiosError(e) && e.response) {
       switch (e.response.status) {
         case 400:
-          ctx.response.body = renderExpired(
-            process.env.ASSET_PATH ?? '',
-            isMobile,
-          );
+          ctx.response.body = renderExpired(appProps);
           break;
         case 404:
-          ctx.response.body = renderNotFound(
-            process.env.ASSET_PATH ?? '',
-            isMobile,
-          );
+          ctx.response.body = renderNotFound(appProps);
           break;
       }
     }
@@ -52,5 +51,5 @@ viewRouter.get('/health', (ctx) => {
 export default viewRouter;
 export const fallback = (ctx: Context) => {
   const isMobile = ctx.userAgent.isMobile;
-  ctx.response.body = renderNotFound(process.env.ASSET_PATH ?? '', isMobile);
+  ctx.response.body = renderNotFound(createAppProps({ isMobile }));
 };

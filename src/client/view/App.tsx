@@ -12,10 +12,10 @@ type Props = {
   store: Store;
 } & AppProps;
 
-export const App = ({ store, assetPath, isMobile }: Props) => {
+export const App = ({ store, ...props }: Props) => {
   return (
     <Provider store={store}>
-      <DefaultContainer assetPath={assetPath} isMobile={isMobile}>
+      <DefaultContainer {...props}>
         <BandalartSharePage />
       </DefaultContainer>
     </Provider>

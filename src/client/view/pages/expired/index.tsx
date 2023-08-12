@@ -5,10 +5,10 @@ import { css } from '@linaria/core';
 import { AppProps } from '../../types/app';
 import { AppDownload } from '../../components/banner/AppDownload';
 
-export const ExpiredPage = ({ assetPath, isMobile }: AppProps) => (
-  <DefaultContainer assetPath={assetPath} isMobile={isMobile}>
+export const ExpiredPage = (props: AppProps) => (
+  <DefaultContainer {...props}>
     <div className={container}>
-      {isMobile && <AppDownload />}
+      {props.isMobile && <AppDownload />}
       <WarningTemplate
         iconName={'hourglass'}
         title={'유효기간이 만료된 페이지에요'}
