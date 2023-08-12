@@ -10,6 +10,7 @@ import { isAxiosError } from 'axios';
 const viewRouter = new Router();
 
 viewRouter.get('/share/:key', async (ctx) => {
+  const isMobile = ctx.userAgent.isMobile;
   try {
     initApiClient();
     const key = ctx.params.key;
@@ -21,17 +22,23 @@ viewRouter.get('/share/:key', async (ctx) => {
         bandalartDetail: bandalartDetail,
         bandalartTree: bandalartCells,
       }),
-      isMobile: ctx.userAgent.isMobile,
+      isMobile,
     });
   } catch (e) {
     console.error(e);
     if (isAxiosError(e) && e.response) {
       switch (e.response.status) {
         case 400:
-          ctx.response.body = renderExpired(process.env.ASSET_PATH ?? '');
+          ctx.response.body = renderExpired(
+            process.env.ASSET_PATH ?? '',
+            isMobile,
+          );
           break;
         case 404:
-          ctx.response.body = renderNotFound(process.env.ASSET_PATH ?? '');
+          ctx.response.body = renderNotFound(
+            process.env.ASSET_PATH ?? '',
+            isMobile,
+          );
           break;
       }
     }
@@ -44,5 +51,6 @@ viewRouter.get('/health', (ctx) => {
 
 export default viewRouter;
 export const fallback = (ctx: Context) => {
-  ctx.response.body = renderNotFound(process.env.ASSET_PATH ?? '');
+  const isMobile = ctx.userAgent.isMobile;
+  ctx.response.body = renderNotFound(process.env.ASSET_PATH ?? '', isMobile);
 };

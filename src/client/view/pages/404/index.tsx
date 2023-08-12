@@ -2,9 +2,10 @@ import React from 'react';
 import { WarningTemplate } from '../../components/template/WarningTemplate';
 import { DefaultContainer } from '../../components/_common/DefaultContainer';
 import { css } from '@linaria/core';
+import { AppProps } from '../../types/app';
 
-export const NotFoundPage = ({ assetPath }: { assetPath: string }) => (
-  <DefaultContainer assetPath={assetPath}>
+export const NotFoundPage = ({ assetPath, isMobile }: AppProps) => (
+  <DefaultContainer assetPath={assetPath} isMobile={isMobile}>
     <div className={container}>
       <WarningTemplate
         iconName={'warning'}

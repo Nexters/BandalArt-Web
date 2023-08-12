@@ -38,16 +38,20 @@ export const renderer = ({
     );
     return defaultHtml(assetPath, content);
   } catch (e) {
-    return renderNotFound(assetPath);
+    return renderNotFound(assetPath, isMobile);
   }
 };
 
-export const renderNotFound = (assetPath: string) => {
-  const content = renderToString(<NotFoundPage assetPath={assetPath} />);
+export const renderNotFound = (assetPath: string, isMobile: boolean) => {
+  const content = renderToString(
+    <NotFoundPage assetPath={assetPath} isMobile={isMobile} />,
+  );
   return defaultHtml(assetPath, content);
 };
 
-export const renderExpired = (assetPath: string) => {
-  const content = renderToString(<ExpiredPage assetPath={assetPath} />);
+export const renderExpired = (assetPath: string, isMobile: boolean) => {
+  const content = renderToString(
+    <ExpiredPage assetPath={assetPath} isMobile={isMobile} />,
+  );
   return defaultHtml(assetPath, content);
 };

@@ -2,9 +2,10 @@ import React from 'react';
 import { WarningTemplate } from '../../components/template/WarningTemplate';
 import { DefaultContainer } from '../../components/_common/DefaultContainer';
 import { css } from '@linaria/core';
+import { AppProps } from '../../types/app';
 
-export const ExpiredPage = ({ assetPath }: { assetPath: string }) => (
-  <DefaultContainer assetPath={assetPath}>
+export const ExpiredPage = ({ assetPath, isMobile }: AppProps) => (
+  <DefaultContainer assetPath={assetPath} isMobile={isMobile}>
     <div className={container}>
       <WarningTemplate
         iconName={'hourglass'}
