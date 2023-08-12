@@ -2,8 +2,9 @@ import Router from '@koa/router';
 import { initApiClient } from '../../agent/ApiClient';
 import { getSharedBandalartDetailByKey } from '../../agent/shares/getSharedBandalartDetailByKey';
 import { getSharedBandalartCells } from '../../agent/shares/getSharedBandalartCells';
-import { renderer } from '../../client/renderer';
+import { renderer, renderExpired, renderNotFound } from '../../client/renderer';
 import { createStore } from '../../client/stores/createStore';
+import { Context } from 'koa';
 
 const viewRouter = new Router();
 
@@ -22,6 +23,18 @@ viewRouter.get('/share/:key', async (ctx) => {
     });
   } catch (e) {
     console.error(e);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    if (e.response.status === 400) {
+      ctx.response.body = renderExpired(process.env.ASSET_PATH ?? '');
+      return;
+    }
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    if (e.response.status === 404) {
+      ctx.response.body = renderNotFound(process.env.ASSET_PATH ?? '');
+      return;
+    }
   }
 });
 
@@ -30,3 +43,6 @@ viewRouter.get('/health', (ctx) => {
 });
 
 export default viewRouter;
+export const fallback = (ctx: Context) => {
+  ctx.response.body = renderNotFound(process.env.ASSET_PATH ?? '');
+};

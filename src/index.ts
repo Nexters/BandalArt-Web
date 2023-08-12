@@ -1,7 +1,7 @@
 import koa from 'koa';
 import serve from 'koa-static';
 import { configDotenv } from 'dotenv';
-import viewRouter from './server/route/viewRoute';
+import viewRouter, { fallback } from './server/route/viewRoute';
 
 configDotenv();
 
@@ -12,6 +12,8 @@ const app = new koa();
 
 app.use(viewRouter.routes()).use(viewRouter.allowedMethods());
 app.use(serve(__dirname + '/public'));
+
+app.use(fallback);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://${HOST}:${PORT}`);
