@@ -14,6 +14,8 @@ const defaultHtml = (assetPath: string, content: string) => `
         <meta property="og:title" content="반다라트">
         <meta property="og:description" content="부담감은 적게, 목표는 크게">
         <meta property="og:image" content="${assetPath}/image/ogimage.png">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
         <title>반다라트</title>
         <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-dynamic-subset.css" />
         <link rel="stylesheet" href="${assetPath}/styles.css" />
