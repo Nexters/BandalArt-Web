@@ -28,8 +28,10 @@ viewRouter.get('/share/:key', async (ctx) => {
       switch (e.response.status) {
         case 400:
           ctx.response.body = renderExpired(process.env.ASSET_PATH ?? '');
+          break;
         case 404:
           ctx.response.body = renderNotFound(process.env.ASSET_PATH ?? '');
+          break;
       }
     }
   }
