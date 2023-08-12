@@ -15,5 +15,5 @@ app.use(serve(__dirname + '/public'));
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://${HOST}:${PORT}`);
-  console.log(`Quick link -> http://${HOST}:${PORT}/share/9H3bp`);
+  console.log(`Quick link -> http://${HOST}:${PORT}/share/Ha63U`);
 });

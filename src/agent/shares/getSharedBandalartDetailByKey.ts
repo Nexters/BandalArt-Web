@@ -4,9 +4,9 @@ import {
   BandalartDetailSchema,
 } from '../../types/BandalartDetail';
 
-export const getBandalartDetailByKey = async (
+export const getSharedBandalartDetailByKey = async (
   key: string,
 ): Promise<BandalartDetail> => {
-  const response = await apiClient().get(`/v1/bandalarts/${key}`);
+  const response = await apiClient().get(`/v1/shares/${key}/bandalarts`);
   return BandalartDetailSchema.parse(response.data);
 };

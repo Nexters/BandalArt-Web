@@ -1,7 +1,7 @@
 import Router from '@koa/router';
 import { initApiClient } from '../../agent/ApiClient';
-import { getBandalartDetailByKey } from '../../agent/bandalart/getBandalartDetailByKey';
-import { getBandalartCells } from '../../agent/bandalart/getBandalartCells';
+import { getSharedBandalartDetailByKey } from '../../agent/shares/getSharedBandalartDetailByKey';
+import { getSharedBandalartCells } from '../../agent/shares/getSharedBandalartCells';
 import { renderer } from '../../client/renderer';
 import { createStore } from '../../client/stores/createStore';
 
@@ -11,8 +11,8 @@ viewRouter.get('/share/:key', async (ctx) => {
   try {
     initApiClient();
     const key = ctx.params.key;
-    const bandalartDetail = await getBandalartDetailByKey(key);
-    const bandalartCells = await getBandalartCells(key);
+    const bandalartDetail = await getSharedBandalartDetailByKey(key);
+    const bandalartCells = await getSharedBandalartCells(key);
     ctx.response.body = renderer({
       assetPath: process.env.ASSET_PATH ?? '',
       store: createStore({
