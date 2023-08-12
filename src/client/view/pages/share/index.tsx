@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useContext } from 'react';
 import { css } from '@linaria/core';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../stores/createStore';
@@ -6,12 +6,15 @@ import { HeaderSection } from '../../components/HeaderSection';
 import { Table } from '../../components/table/Table';
 import { TABLE_SIZE } from '../../constants/table';
 import { AppDownload } from '../../components/banner/AppDownload';
+import { EnvContext } from '../../components/context/EnvContext';
 
 export const BandalartSharePage = () => {
   const detail = useSelector((state: RootState) => state.bandalartDetail);
   const treeRoot = useSelector((state: RootState) => state.bandalartTree)!;
 
   const completionRatio = treeRoot.completionRatio;
+
+  const { isMobile } = useContext(EnvContext);
 
   return (
     <div
@@ -23,7 +26,7 @@ export const BandalartSharePage = () => {
         } as CSSProperties
       }
     >
-      <AppDownload />
+      {isMobile && <AppDownload />}
       <HeaderSection detail={detail} completionRatio={completionRatio} />
       <main>
         <Table root={treeRoot} />

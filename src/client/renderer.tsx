@@ -6,12 +6,16 @@ import { App } from './view/App';
 export const renderer = ({
   assetPath,
   store,
+  isMobile,
 }: {
   assetPath: string;
   store: Store;
+  isMobile: boolean;
 }) => {
   try {
-    const content = renderToString(<App store={store} assetPath={assetPath} />);
+    const content = renderToString(
+      <App store={store} assetPath={assetPath} isMobile={isMobile} />,
+    );
     return `
     <!DOCTYPE html>
     <html lang="ko">

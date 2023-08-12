@@ -12,13 +12,14 @@ initApiClient();
 type AppProps = {
   store: Store;
   assetPath: string;
+  isMobile: boolean;
 };
 
-export const App = ({ store, assetPath }: AppProps) => {
+export const App = ({ store, assetPath, isMobile }: AppProps) => {
   return (
     <Provider store={store}>
       <div className={cx(globalStyle, 'theme-light')}>
-        <EnvContextProvider assetPath={assetPath}>
+        <EnvContextProvider assetPath={assetPath} isMobile={isMobile}>
           <BandalartSharePage />
         </EnvContextProvider>
       </div>

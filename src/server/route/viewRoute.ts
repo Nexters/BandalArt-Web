@@ -1,9 +1,9 @@
 import Router from '@koa/router';
-import { initApiClient } from '../../agent/ApiClient';
 import { getSharedBandalartDetailByKey } from '../../agent/shares/getSharedBandalartDetailByKey';
 import { getSharedBandalartCells } from '../../agent/shares/getSharedBandalartCells';
 import { renderer } from '../../client/renderer';
 import { createStore } from '../../client/stores/createStore';
+import { initApiClient } from '../../agent/ApiClient';
 
 const viewRouter = new Router();
 
@@ -19,6 +19,7 @@ viewRouter.get('/share/:key', async (ctx) => {
         bandalartDetail: bandalartDetail,
         bandalartTree: bandalartCells,
       }),
+      isMobile: ctx.userAgent.isMobile,
     });
   } catch (e) {
     console.error(e);
