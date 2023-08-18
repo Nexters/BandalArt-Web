@@ -51,6 +51,8 @@ const baseCellBox = css`
   align-items: center;
   word-break: keep-all;
   text-align: center;
+  padding: 0 2px;
+  box-sizing: border-box;
 
   &.completed {
     background-color: var(--color-200);

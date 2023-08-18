@@ -28,7 +28,7 @@ export const BandalartSharePage = () => {
     >
       {isMobile && <AppDownload />}
       <HeaderSection detail={detail} completionRatio={completionRatio} />
-      <main>
+      <main className={mainStyle}>
         <Table root={treeRoot} />
       </main>
     </div>
@@ -46,4 +46,7 @@ const container = css`
   justify-content: center;
   margin: auto;
   gap: 18px;
+  padding: 0 16px;
 `;
+
+const mainStyle = css``;
