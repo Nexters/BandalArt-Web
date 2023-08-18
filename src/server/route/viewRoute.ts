@@ -6,17 +6,41 @@ import { createStore } from '../../client/stores/createStore';
 import { initApiClient } from '../../agent/ApiClient';
 import { Context } from 'koa';
 import { isAxiosError } from 'axios';
+import { AppProps } from '../../client/view/types/app';
+import { Platform } from '../types/platform';
 
 const viewRouter = new Router();
 
-const createAppProps = ({ isMobile }: { isMobile: boolean }) => ({
+const createAppProps = ({
+  isMobile,
+  platform,
+}: {
+  isMobile: boolean;
+  platform: Platform;
+}): AppProps => ({
   assetPath: process.env.ASSET_PATH ?? '',
   appDownloadUrl: process.env.APP_DOWNLOAD_URL || '',
+  platform,
   isMobile,
 });
 
+const getPlatform = (ctx: Context): Platform => {
+  const ua = ctx.userAgent;
+  if (ua.isMobile) {
+    if (ua.isAndroid) {
+      return 'android';
+    } else if (ua.iPhone) {
+      return 'ios';
+    }
+  }
+  return 'desktop';
+};
+
 viewRouter.get('/share/:key', async (ctx) => {
-  const appProps = createAppProps({ isMobile: ctx.userAgent.isMobile });
+  const appProps = createAppProps({
+    isMobile: ctx.userAgent.isMobile,
+    platform: getPlatform(ctx),
+  });
   try {
     initApiClient();
     const key = ctx.params.key;
@@ -51,5 +75,7 @@ viewRouter.get('/health', (ctx) => {
 export default viewRouter;
 export const fallback = (ctx: Context) => {
   const isMobile = ctx.userAgent.isMobile;
-  ctx.response.body = renderNotFound(createAppProps({ isMobile }));
+  ctx.response.body = renderNotFound(
+    createAppProps({ isMobile, platform: getPlatform(ctx) }),
+  );
 };
