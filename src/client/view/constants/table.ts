@@ -1,4 +1,4 @@
-export const CELL_SIZE = 65;
+export const CELL_SIZE = 65 - 4;
 export const GAP_BETWEEN_CELLS = 2;
 export const GAP_BETWEEN_SECTIONS = 2;
 export const PADDING_IN_SECTION = 3;
