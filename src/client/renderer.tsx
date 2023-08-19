@@ -4,6 +4,7 @@ import { Store } from 'redux';
 import { App } from './view/App';
 import { NotFoundPage } from './view/pages/404';
 import { ExpiredPage } from './view/pages/expired';
+import { Platform } from '../server/types/platform';
 
 const defaultHtml = (assetPath: string, content: string) => `    
     <!DOCTYPE html>
@@ -18,9 +19,9 @@ const defaultHtml = (assetPath: string, content: string) => `
         gtag('config', 'G-GNDJL4812E');
         </script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <meta name="description" content="부담감은 적게, 목표는 크게">
+        <meta name="description" content="당신의 목표를 더욱 선명하게">
         <meta property="og:title" content="반다라트">
-        <meta property="og:description" content="부담감은 적게, 목표는 크게">
+        <meta property="og:description" content="당신의 목표를 더욱 선명하게">
         <meta property="og:image" content="${assetPath}/image/ogimage.png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
@@ -40,6 +41,7 @@ type AppProps = {
   assetPath: string;
   isMobile: boolean;
   appDownloadUrl: string;
+  platform: Platform;
 };
 
 export const renderer = ({
