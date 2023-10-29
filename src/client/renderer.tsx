@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { Store } from 'redux';
 import { App } from './view/App';
 import { NotFoundPage } from './view/pages/404';
@@ -51,7 +51,7 @@ export const renderer = ({
   store: Store;
 } & AppProps) => {
   try {
-    const content = renderToString(<App store={store} {...props} />);
+    const content = renderToStaticMarkup(<App store={store} {...props} />);
     return defaultHtml(props.assetPath, content);
   } catch (e) {
     return renderNotFound(props);
@@ -59,11 +59,11 @@ export const renderer = ({
 };
 
 export const renderNotFound = (props: AppProps) => {
-  const content = renderToString(<NotFoundPage {...props} />);
+  const content = renderToStaticMarkup(<NotFoundPage {...props} />);
   return defaultHtml(props.assetPath, content);
 };
 
 export const renderExpired = (props: AppProps) => {
-  const content = renderToString(<ExpiredPage {...props} />);
+  const content = renderToStaticMarkup(<ExpiredPage {...props} />);
   return defaultHtml(props.assetPath, content);
 };
