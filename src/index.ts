@@ -1,5 +1,6 @@
 import koa from 'koa';
 import serve from 'koa-static';
+import logger from 'koa-logger';
 import { userAgent } from 'koa-useragent';
 import { configDotenv } from 'dotenv';
 import viewRouter, { fallback } from './server/route/viewRoute';
@@ -11,9 +12,15 @@ const HOST = process.env.HOST;
 
 const app = new koa();
 
+app.use(logger());
+
 app.use(userAgent);
 app.use(viewRouter.routes()).use(viewRouter.allowedMethods());
-app.use(serve(__dirname + '/public'));
+app.use(
+  serve(__dirname + '/public', {
+    maxAge: 24 * 60 * 60,
+  }),
+);
 
 app.use(fallback);
 
