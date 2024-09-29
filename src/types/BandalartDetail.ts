@@ -14,3 +14,14 @@ export const BandalartDetailSchema = z.object({
     .nullable(),
 });
 export type BandalartDetail = z.infer<typeof BandalartDetailSchema>;
+
+export const mockDetail: BandalartDetail = {
+  key: '123',
+  cellKey: '1',
+  isCompleted: false,
+  mainColor: '#3fffba',
+  subColor: '#111827',
+  title: '발전하는 예진',
+  profileEmoji: '🔥',
+  dueDate: new Date('2025/1/1').toString(),
+};
