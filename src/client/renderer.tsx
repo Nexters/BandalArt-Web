@@ -5,6 +5,7 @@ import { App } from './view/App';
 import { NotFoundPage } from './view/pages/404';
 import { ExpiredPage } from './view/pages/expired';
 import { Platform } from '../server/types/platform';
+import { ErrorPage } from './view/pages/error';
 
 const defaultHtml = (assetPath: string, content: string) => `    
     <!DOCTYPE html>
@@ -65,5 +66,10 @@ export const renderNotFound = (props: AppProps) => {
 
 export const renderExpired = (props: AppProps) => {
   const content = renderToStaticMarkup(<ExpiredPage {...props} />);
+  return defaultHtml(props.assetPath, content);
+};
+
+export const renderError = (props: AppProps) => {
+  const content = renderToStaticMarkup(<ErrorPage {...props} />);
   return defaultHtml(props.assetPath, content);
 };
